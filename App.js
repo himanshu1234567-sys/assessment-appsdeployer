@@ -5,7 +5,7 @@ import Slider from '@react-native-community/slider';
 import Orientation from 'react-native-orientation-locker';
 const App = () => {
   const [clicked, setClicked] = useState(false);
-  const [puased, setPaused] = useState(false);
+  const [paused, setPaused] = useState(false);
   const [progress, setProgress] = useState(null);
   const [fullScreen,setFullScreen]=useState(false)
   const ref = useRef();
@@ -19,30 +19,28 @@ const App = () => {
   
   return (
     <View style={{flex: 1}}>
+      <View style={{margin:20 , alignItems:'center'}}>
+      <Text style={{fontSize:30 }}>Appsdeployer</Text>
+      <Text style={{fontSize:20 , margin:5 }}>(Assessment)</Text>
+      </View>
+     <View style={{backgroundColor:'red'}}>
+ 
+     </View>
       <TouchableOpacity
         style={{width: '100%', height:fullScreen?'100%': 200}}
         onPress={() => {
           setClicked(true);
         }}>
         <Video
-          paused={puased}
+          paused={paused}
           source={{
-            uri: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+            uri: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4',
           }}
           ref={ref}
           onProgress={x => {
             console.log(x);
             setProgress(x);
           }}
-          // Can be a URL or a local file.
-          //  ref={(ref) => {
-          //    this.player = ref
-          //  }}                                      // Store reference
-          //  onBuffer={this.onBuffer}                // Callback when remote video is buffering
-          //  onError={this.videoError}
-
-          // Callback when video cannot be loaded
-          muted
           style={{width: '100%', height: fullScreen?'100%': 200}}
           resizeMode="contain"
         />
@@ -68,11 +66,11 @@ const App = () => {
               </TouchableOpacity>
               <TouchableOpacity
                 onPress={() => {
-                  setPaused(!puased);
+                  setPaused(!paused);
                 }}>
                 <Image
                   source={
-                    puased
+                    paused
                       ? require('./src/play-button.png')
                       : require('./src/pause.png')
                   }
